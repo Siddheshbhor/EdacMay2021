@@ -1,0 +1,23 @@
+class q12
+{
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		int a=sc.nextInt();
+		System.out.print("take number 1");
+		
+		int b=sc.nextInt();
+	    System.out.print("take number 2");
+
+		int c=sc.nextInt();
+		System.out.print("take number 3");
+		
+		int d=(a+b+c/3);
+	    System.out.print("average of 3 number= "+d);
+
+		
+
+		
+	}
+}
