@@ -1,0 +1,309 @@
+SQL> create table SALESPEOPLE1(Snum number(4),Sname varchar2(10),City varchar2(10),Comm number(3,2));
+
+Table created.
+
+SQL> insert into SALESPEOPLE1 values (1001,'Peel','London',0.12);
+
+1 row created.
+
+SQL> select * from SALESPEOPLE1;
+
+      SNUM SNAME      CITY             COMM
+---------- ---------- ---------- ----------
+      1001 Peel       London            .12
+
+SQL> insert into SALESPEOPLE1 values (1002,'SErres','San Jose',0.13);
+
+1 row created.
+
+SQL> insert into SALESPEOPLE1 values (1004,'Motika','London',0.11);
+
+1 row created.
+
+SQL> insert into SALESPEOPLE1 values (1007,'Rifkin','Barcilona',0.15);
+
+1 row created.
+
+SQL> insert into SALESPEOPLE1 values (1003,'Axelrod','New York',0.10);
+
+1 row created.
+
+SQL> select * from SALESPEOPLE1;
+
+      SNUM SNAME      CITY             COMM
+---------- ---------- ---------- ----------
+      1001 Peel       London            .12
+      1002 SErres     San Jose          .13
+      1004 Motika     London            .11
+      1007 Rifkin     Barcilona         .15
+      1003 Axelrod    New York           .1
+
+SQL> create table CUSTOMER(CNUM
+  2  CNAME
+  3  CITY
+  4  RATING
+  5  SNUM
+  6  2001
+  7  CNUM
+  8  CNAME
+  9  CITY
+ 10  RATING
+ 11  SNUM
+ 12  2001
+ 13  ;
+CITY
+*
+ERROR at line 3:
+ORA-00907: missing right parenthesis
+
+
+SQL> insert into CUSTOMER values (2004,'Grass','Berlin',300,1002);
+insert into CUSTOMER values (2004,'Grass','Berlin',300,1002)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> insert into CUSTOMERS values (2001,'Hoffman','London',100,1001);
+insert into CUSTOMERS values (2001,'Hoffman','London',100,1001)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> insert into CUSTOMERS(Cnum number(4),Cname varchar2(10),city varchar2(10),rating number(4),sum number(4) values (2001,'Hoffman','London',100,1001);
+insert into CUSTOMERS(Cnum number(4),Cname varchar2(10),city varchar2(10),rating number(4),sum number(4) values (2001,'Hoffman','London',100,1001)
+                           *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into CUSTOMERS(Cnum number(4),Cname varchar2(10),city varchar2(10),rating number(4),sum number(4);
+insert into CUSTOMERS(Cnum number(4),Cname varchar2(10),city varchar2(10),rating number(4),sum number(4)
+                           *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into CUSTOMERS(Cnum number(4),Cname varchar2(10),city varchar2(10),rating number(4),sum number(4));
+insert into CUSTOMERS(Cnum number(4),Cname varchar2(10),city varchar2(10),rating number(4),sum number(4))
+                           *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> create table CUSTOMERS(Cnum number(4),Cname varchar2(10),city varchar2(10),rating number(4),sum number(4));
+
+Table created.
+
+SQL> insert into CUSTOMERS values (2001,'Hoffman','London',100,1001);
+
+1 row created.
+
+SQL> insert into CUSTOMERS values (2002,'Giovanni','Rome',200,1003);
+
+1 row created.
+
+SQL> insert into CUSTOMERS values (2003,'Liu','San Jose',200,1002);
+
+1 row created.
+
+SQL> insert into CUSTOMERS values (2004,'Grass','Berlin',300,1002);
+
+1 row created.
+
+SQL> insert into CUSTOMERS values (2004,'Grass','London',300,1001);
+
+1 row created.
+
+SQL> insert into CUSTOMERS values (2006,'Clemens','London',100,1001);
+
+1 row created.
+
+SQL> insert into CUSTOMERS values (2008,'Cisneros','San Jose',300,1007);
+
+1 row created.
+
+SQL> insert into CUSTOMERS values (2007,'Pereira','Rome',100,1004);
+
+1 row created.
+
+SQL> create tables ORDERS(ONUM(4),Amt Number(7,2),Odate date,Cnum(4),Snum(4));
+create tables ORDERS(ONUM(4),Amt Number(7,2),Odate date,Cnum(4),Snum(4))
+       *
+ERROR at line 1:
+ORA-00901: invalid CREATE command
+
+
+SQL> create tables ORDERS(Onum number(4),Amt Number(7,2),Odate date,Cnum number(4),Snum number(4));
+create tables ORDERS(Onum number(4),Amt Number(7,2),Odate date,Cnum number(4),Snum number(4))
+       *
+ERROR at line 1:
+ORA-00901: invalid CREATE command
+
+
+SQL> create table ORDERS(Onum number(4),Amt Number(7,2),Odate date,Cnum number(4),Snum number(4));
+
+Table created.
+
+SQL> insert into values (3001,18.69,'03-oct-1990',2008,1007);
+insert into values (3001,18.69,'03-oct-1990',2008,1007)
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> insert into ORDERS values (3001,18.69,'03-oct-1990',2008,1007);
+
+1 row created.
+
+SQL> insert into ORDERS values (3003,767.19,'04-oct-1990',2001,1001);
+
+1 row created.
+
+SQL> insert into ORDERS values (3002,1900.10,'03-oct-1990',2007,1004);
+
+1 row created.
+
+SQL> insert into ORDERS values (3005,5160.45,'03-oct-1990',2003,1002);
+
+1 row created.
+
+SQL> insert into ORDERS values (3006,1098.16,'03-oct-1990',2008,1007);
+
+1 row created.
+
+SQL> insert into ORDERS values (3009,1713.23,'04-oct-1990',2002,1003);
+
+1 row created.
+
+SQL> insert into ORDERS values (3007,75.75,'04-oct-1990',2004,1002);
+
+1 row created.
+
+SQL> insert into ORDERS values (3008,4723.00,'05-oct-1990',2006,1001);
+
+1 row created.
+
+SQL> insert into ORDERS values (3010,1309.95,'06-oct-1990',2004,1002);
+
+1 row created.
+
+SQL> insert into ORDERS values (3011,9891.88,'06-oct-1990',2006,1001);
+
+1 row created.
+
+SQL> select * from ORDERS;
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 04-OCT-90       2001       1001
+      3002     1900.1 03-OCT-90       2007       1004
+      3005    5160.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+
+================================================================================================================
+
+SQL> select * from ORDERS;
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 04-OCT-90       2001       1001
+      3002     1900.1 03-OCT-90       2007       1004
+      3005    5160.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+
+10 rows selected.
+
+SQL> select ONUM,AMT,ODATE from ORDERS:
+  2  select ONUM,AMT,ODATE from ORDERS;
+SP2-0552: Bind variable "SELECT" not declared.
+
+===================================================================================================================
+/* 1) Write a select command that produces the order number, amount, and date for all rows in the Orders table.*/
+
+SQL> select ONUM,AMT,ODATE from ORDERS;
+
+      ONUM        AMT ODATE
+---------- ---------- ---------
+      3001      18.69 03-OCT-90
+      3003     767.19 04-OCT-90
+      3002     1900.1 03-OCT-90
+      3005    5160.45 03-OCT-90
+      3006    1098.16 03-OCT-90
+      3009    1713.23 04-OCT-90
+      3007      75.75 04-OCT-90
+      3008       4723 05-OCT-90
+      3010    1309.95 06-OCT-90
+      3011    9891.88 06-OCT-90
+
+10 rows selected.
+
+SQL> select * from SALSPEOPLE1 where SNUM=1001;
+select * from SALSPEOPLE1 where SNUM=1001
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+============================================================================================================================
+/* 2) Write a query that produces all rows from the Customers table for which the salesperson’s number is 1001.*/
+
+SQL> select * from SALESPEOPLE1 where SNUM=1001;
+
+      SNUM SNAME      CITY             COMM
+---------- ---------- ---------- ----------
+      1001 Peel       London            .12
+
+SQL> select CTTY,SNAME,SNUM,COMM from SALESPEOPLE1;
+select CTTY,SNAME,SNUM,COMM from SALESPEOPLE1
+       *
+ERROR at line 1:
+ORA-00904: "CTTY": invalid identifier
+
+=============================================================================================================================
+/* 3) Write a query that displays the Salespeople table with the columns in the following order: city, sname, snum, comm.
+SQL> select CiTY,SNAME,SNUM,COMM from SALESPEOPLE1;*/
+
+CITY       SNAME            SNUM       COMM
+---------- ---------- ---------- ----------
+London     Peel             1001        .12
+San Jose   SErres           1002        .13
+London     Motika           1004        .11
+Barcilona  Rifkin           1007        .15
+New York   Axelrod          1003         .1
+
+===============================================================================================================================
+/*4.Write a select command that produces the rating followed by the name of each customer in San Jose.*/
+
+SQL> select RATING,CNAME from CUSTOMERS where CITY='San Jose';
+
+    RATING CNAME
+---------- ----------
+       200 Liu
+       300 Cisneros
+
+=================================================================================================================================
+/*5. Write a query that will produce the snum values of all salespeople (suppress the duplicates) with orders in the Orders table.
+
+ SQL> select distinct snum from ORDERS;
+
+      SNUM
+----------
+      1003
+      1001
+      1002
+      1007
+      1004
+===============================================================================================================================
