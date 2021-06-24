@@ -1,0 +1,172 @@
+
+SQL> select * from ORDERS where AMT>1000;
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3002     1900.1 03-OCT-90       2007       1004
+      3005    5160.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+
+7 rows selected.
+
+SQL> select sname,city from SALESPEOPLE where city='london' and Comm >.10;
+select sname,city from SALESPEOPLE where city='london' and Comm >.10
+                       *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select SNAME,CITY from SALESPEOPLE1 where city='London' and COMM >.10;
+
+SNAME      CITY
+---------- ----------
+Peel       London
+Motika     London
+Peel       London
+Motika     London
+
+SQL> select * from CUSTOMERS where (RATING >=100 and CITY ='Rome')or (RATING>100);
+
+      CNUM CNAME      CITY           RATING        SUM
+---------- ---------- ---------- ---------- ----------
+      2002 Giovanni   Rome              200       1003
+      2003 Liu        San Jose          200       1002
+      2004 Grass      Berlin            300       1002
+      2002 Giovanni   Rome              200       1003
+      2003 Liu        San Jose          200       1002
+      2004 Grass      Berlin            300       1002
+      2004 Grass      London            300       1001
+      2008 Cisneros   San Jose          300       1007
+      2007 Pereira    Rome              100       1004
+
+9 rows selected.
+
+SQL> delete * from CUSTOMERS where CNAME='Giovanni';
+delete * from CUSTOMERS where CNAME='Giovanni'
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> Select * from Orders
+  2  where (amt < 1000 OR
+  3  NOT (odate = ‘03-OCT-1990’
+  4  AND cnum > 2003));
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> Select * from Orders
+  2  where (amt < 1000 OR
+  3  NOT (odate = ‘03-OCT-1990’
+  4  where (amt < 1000 OR
+  5  ;
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> Select * from Orders
+  2  where (amt < 1000 OR
+  3  NOT (odate = ‘03-OCT-1990’
+  4  AND CNUM > 2003));
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> where (AMT < 1000 or
+SP2-0734: unknown command beginning "where (AMT..." - rest of line ignored.
+SQL> NOT (odate = ‘03-OCT-1990’
+SP2-0734: unknown command beginning "NOT (odate..." - rest of line ignored.
+SQL> AND CNUM > 2003));
+SP2-0734: unknown command beginning "AND CNUM >..." - rest of line ignored.
+SQL> select * from order where (AMT < 1000 or
+  2  NOT (odate = ‘03-OCT-1990’
+  3  AND CNUM > 2003));
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> select * from ORDER where (AMT < 1000 or NOT (odate = '03-oct-1990'and CNUM > 2003));
+select * from ORDER where (AMT < 1000 or NOT (odate = '03-oct-1990'and CNUM > 2003))
+              *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> select * from ORDER where (AMT < 1000 or NOT (odate = '03-oct-1990'and CNUM > 2003));
+select * from ORDER where (AMT < 1000 or NOT (odate = '03-oct-1990'and CNUM > 2003))
+              *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> select * from ORDERS;
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 04-OCT-90       2001       1001
+      3002     1900.1 03-OCT-90       2007       1004
+      3005    5160.45 03-OCT-90       2003       1002
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+
+10 rows selected.
+
+SQL> select * from ORDERS where (AMT < 1000 or NOT (odate = '03-oct-1990'and CNUM > 2003));
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 04-OCT-90       2001       1001
+      3005    5160.45 03-OCT-90       2003       1002
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+
+8 rows selected.
+
+SQL> Select * from ORDERS
+  2  where NOT ((odate = '03-OCT-1990' OR SNUM
+  3  >1006) AND AMT >= 1500);
+
+      ONUM        AMT ODATE           CNUM       SNUM
+---------- ---------- --------- ---------- ----------
+      3001      18.69 03-OCT-90       2008       1007
+      3003     767.19 04-OCT-90       2001       1001
+      3006    1098.16 03-OCT-90       2008       1007
+      3009    1713.23 04-OCT-90       2002       1003
+      3007      75.75 04-OCT-90       2004       1002
+      3008       4723 05-OCT-90       2006       1001
+      3010    1309.95 06-OCT-90       2004       1002
+      3011    9891.88 06-OCT-90       2006       1001
+
+8 rows selected.
+
+SQL> Select SNUM, SNAME, CITY, COMM From SALESPEOPLE1
+  2  where (COMM > .12 OR COMM <.14);
+
+      SNUM SNAME      CITY             COMM
+---------- ---------- ---------- ----------
+      1001 Peel       London            .12
+      1002 SErres     San Jose          .13
+      1004 Motika     London            .11
+      1007 Rifkin     Barcilona         .15
+      1003 Axelrod    New York           .1
+      1001 Peel       London            .12
+      1002 SErres     San Jose          .13
+      1004 Motika     London            .11
+      1007 Rifkin     Barcilona         .15
+      1003 Axelrod    New York           .1
+
+10 rows selected.
