@@ -1,0 +1,44 @@
+
+
+================================================= Exersize 3 ==============================================================================
+
+use sid;
+
+# 1.first letter upper case
+#mysql initcap(); not supported
+select * from S;
+select concat(upper(substr(sname,1,1)),lower(substr(sname,2))) as 'sname' from S;
+
+
+# 2. whole sname is upper case
+select upper(sname) from S;
+
+#3. whole sname is lowercase
+
+select lower(sname) from S;
+
+#4. Display all the Supplier names padded to 25 characters, 
+#with spaces on the left.
+
+select lpad(sname,25,' ') as 'sname' from S;
+
+# 5.Display all the Supplier names (with ‘la’ replaced by ‘ro’).
+#HINT: REPLACE.
+
+select replace(sname,'lo','ro')  as 'sname' from S;
+
+#6. Implement the above command such that ‘l’ is replaced 
+# with ‘r’ and ‘a’ is replaced with ‘o’.
+
+select replace (replace(sname,'l','r'),'r','o') from S;
+
+#7. Display the Supplier names and the lengths of the names.
+
+select length(sname),sname from S;
+
+# 8. Use the soundex function to search for a supplier by
+# the name of ‘BLOKE’.
+#select * from S;
+select * from S where soundex(sname)=soundex('BLOKE');
+
+
