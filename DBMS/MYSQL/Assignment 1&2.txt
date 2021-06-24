@@ -1,0 +1,150 @@
+
+#========================================   ASSIGNMENT 1  =========================================================
+create database sid;
+
+use sid;
+
+create table SEMP( EMPNO char(4),
+EMPNAME char(20),
+BASIC float (9.2),
+DEPTNO char(2),
+DEPTHEAD char(4));
+
+select * from SEMP;
+
+create table SDEPT(DEPTNO char(2), DEPTNAME char(15));
+
+ insert into SDEPT values (10, 'Development');
+ insert into SDEPT values (20, 'Training');
+ 
+ select * from SDEPT;
+ 
+ insert into SEMP (EMPNO,EMPNAME,BASIC,DEPTNO) 
+ values ('0001','SUNIL',6000,'10'),('0002','HIREN',8000,'20');
+ insert into SEMP(EMPNO,EMPNAME,BASIC,DEPTNO,DEPTHEAD)
+ values (0003,'ALI',4000,'10','0001');
+ insert into SEMP(EMPNO,EMPNAME,BASIC,DEPTHEAD)
+ values ('0004','GEORGE',6000,'0002');
+ 
+ select * from SEMP;
+ 
+ create table S (sno char(4),
+ sname char(15),
+ status int,
+ city char(15));
+ 
+ select * from S;
+ 
+ create table P (pno char(4),
+ pname char(15),
+ color char(15),
+ weight int,
+ city char(15));
+ 
+ select * from P;
+ 
+ create table J (jno char(4),
+ jname char(15),
+ city char(15));
+ 
+ select * from J;
+ 
+
+ 
+ insert into S (sno,sname,status,city)
+ values ('s1','supliers1',10,'london'),
+ ('s2','supliers2',20,'paris'),
+ ('s3','supliers3',30,'athens');
+ 
+ select * from S;
+ 
+ insert into P (pno,pname,color,weight,city)
+ values ('p1','parts1','red',11,'london'),
+ ('p2','parts2','black',13,'paris'),
+('p3','parts3','black',14,'athens');
+
+select * from P; 
+
+insert into J (jno,jname,city)
+values ('j1','project1','london'),
+ ('j2','project2','paris'),
+ ('j3','project3','athens');
+ 
+ select * from J;
+ 
+  create table SPJ (sno char(4),
+ pno char(4),
+ jno char(4),
+ qty int);
+ 
+ select * from SPJ;
+ 
+ insert into SPJ(sno,pno,jno,qty)
+ values ('s1','p1','j1',10),
+ ('s2','p2','j2',20),
+ ('s3','p3','j3',30);
+ 
+ select * from SPJ;
+ 
+ select * from S;
+ 
+ select sno,sname from S;
+ 
+ select pname,color from P where city='london';
+ 
+ select sname from S where city='london';
+ 
+select sname from S where city='paris'or city='athens';
+
+select * from j where city='athens';
+
+select pname from P where weight > 12 and weight < 14; 
+
+select sname from S where status >= 20;
+
+ select Sname from S where City!='London';
+
+select City from S;
+
+select Weight, Weight*1000 as "MILLIGRAMS",Weight/1000 as "KILOGRAMS" from P;
+
+
+
+
+
+
+
+
+#====================================     Assignmenr 2  ==============================================================
+ use sid;
+ /*2. Display the Part Table in the ascending order of CITY and within the city in 
+the ascending order of Part names. */
+ select * from S order by city asc;
+ 
+ /*1. Display the Supplier table in the descending order of CITY. */
+ select * from S order by city desc;
+
+select * from P order by city asc,pname;
+
+/*3. Display all the Suppliers with a status between 10 and 20. */
+select * from S where status >=10 and status <=20;
+
+/*4. Display all the Parts and their Weight, which are not in the range of 10 and 15. */
+select * from P where weight not between 10 and 20;
+
+#/*5. Display all the Part names starting with the letter ‘S’. */
+
+select pname from P where pname like 's%' or 'S%';
+select pname from P where pname >='S' and pname <'T';
+select pname from P where pname like '%r' or 'R%';
+select pname from P where pname >='S' and pname <'T';
+select pname from P where pname like '%1';
+
+#/*6. Display all the Suppliers, belonging to cities starting with the letter ‘L’. */
+select * from  S where city like 'L';
+
+select * from P where Pname like '__1%'
+
+#/*7. Display all the Projects, with the third letter in JNAME as ‘n’.  */
+
+select * from J where city like '__n%';
