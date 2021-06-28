@@ -1,0 +1,151 @@
+
+/*========================== EXERCISE 4 =================================================*/
+
+create database sid;
+
+use sid;
+
+create table SEMP( EMPNO char(4),
+EMPNAME char(20),
+BASIC float (9.2),
+DEPTNO char(2),
+DEPTHEAD char(4));
+
+select * from SEMP;
+
+create table SDEPT(DEPTNO char(2), DEPTNAME char(15));
+
+ insert into SDEPT values (10, 'Development');
+ insert into SDEPT values (20, 'Training');
+ 
+ select * from SDEPT;
+ 
+ insert into SEMP (EMPNO,EMPNAME,BASIC,DEPTNO) 
+ values ('0001','SUNIL',6000,'10'),('0002','HIREN',8000,'20');
+ insert into SEMP(EMPNO,EMPNAME,BASIC,DEPTNO,DEPTHEAD)
+ values (0003,'ALI',4000,'10','0001');
+ insert into SEMP(EMPNO,EMPNAME,BASIC,DEPTHEAD)
+ values ('0004','GEORGE',6000,'0002');
+ 
+ select * from SEMP;
+ 
+ create table S (sno char(4),
+ sname char(15),
+ status int,
+ city char(15));
+ 
+ select * from S;
+ 
+ create table P (pno char(4),
+ pname char(15),
+ color char(15),
+ weight int,
+ city char(15));
+ 
+ select * from P;
+ 
+ create table J (jno char(4),
+ jname char(15),
+ city char(15));
+ 
+ select * from J;
+ 
+
+ 
+ insert into S (sno,sname,status,city)
+ values ('s1','supliers1',10,'london'),
+ ('s2','supliers2',20,'paris'),
+ ('s3','supliers3',30,'athens');
+ 
+ select * from S;
+ 
+ insert into P (pno,pname,color,weight,city)
+ values ('p1','parts1','red',11,'london'),
+ ('p2','parts2','black',13,'paris'),
+('p3','parts3','black',14,'athens');
+
+select * from P; 
+
+insert into J (jno,jname,city)
+values ('j1','project1','london'),
+ ('j2','project2','paris'),
+ ('j3','project3','athens');
+ 
+ select * from J;
+ 
+  create table SPJ (sno char(4),
+ pno char(4),
+ jno char(4),
+ qty int);
+ 
+ select * from SPJ;
+ 
+ insert into SPJ(sno,pno,jno,qty)
+ values ('s1','p1','j1',10),
+ ('s2','p2','j2',20),
+ ('s3','p3','j3',30);
+ 
+
+/*========================== EXERCISE 4 =================================================*/
+
+#1. Display the minimum Status in the Supplier table.
+
+select min(status)as "min" from S;
+
+#2. Display the maximum Weight in the Parts table.
+
+select max(weight) as "max" from P;
+
+#3.. Display the average Weight of the Parts.
+
+select avg(weight) as "Average" from P;
+select avg(ifnull(weight,0)) as "Average" from P;
+
+#.4. Display the total Quantity sold for part ‘P1’.
+
+select * from spj;
+select sum(qty) from spj where pno='p1';
+
+/*5. Display the total Quantity sold for each part.*/ 
+select pno, sum(qty) from spj group by pno order by pno;
+
+/* 4.6 Display the average Quantity sold for each part.*/
+
+select pno, avg(qty) from spj group by pno;
+
+/* 7. Display the maximum Quantity sold for each part, provided the maximum
+ Quantity is greater than 800.*/
+
+insert into spj values ('s3','p2','s4','1000');
+select pno, max(qty) from spj where qty > 800 group by pno;
+
+/*8. Display the Status and the count of Suppliers with that Status.*/
+
+select status,count(sno) from S group by status; 
+
+/*9. Display the count of Projects going on in different cities.*/
+
+select city, count(jno) from j group by city;
+
+/*.10. What is the difference between COUNT(Status) and COUNT(*) ?*/
+select count(*) from spj;
+select count(status) from S;
+
+/*11. Display the Status and the Count of Suppliers with that Status in the following format as shown below:-
+Status Count
+Ten 1
+Twenty 2
+Thirty 3 */
+
+select  
+case
+when status = 10 then 'Ten' 
+when status = 20 then 'Twenty'
+when status = 30 then 'Thirty'
+when status = 40 then 'fourty'
+when status = 50 then 'fifty'
+when status = 60 then 'sixty'
+else 'other'
+end as "status", count(sname)
+from s 
+group by status;
